@@ -1,29 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Dashboard } from "@/components/factory/Dashboard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "AI Video Factory — Dashboard" },
+      { name: "description", content: "Generate AI images, avatars, videos, voices and LoRA at scale on Google Colab GPU workers." },
+      { property: "og:title", content: "AI Video Factory — Dashboard" },
+      { property: "og:description", content: "Generate AI images, avatars, videos, voices and LoRA at scale on Google Colab GPU workers." },
     ],
   }),
-  component: Index,
+  component: Dashboard,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
