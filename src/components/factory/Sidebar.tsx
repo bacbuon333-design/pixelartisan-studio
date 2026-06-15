@@ -3,49 +3,56 @@ import {
   LayoutDashboard,
   FolderKanban,
   Users,
-  ImageIcon,
-  Film,
-  Mic2,
-  Wand2,
-  Workflow,
-  LayoutTemplate,
+  Library,
   Bot,
   Server,
-  HardDrive,
-  CreditCard,
+  BarChart3,
   Settings,
   Sparkles,
   ChevronsLeft,
 } from "lucide-react";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 
-const NAV = [
-  { group: "Workspace", items: [
-    { label: "Dashboard", icon: LayoutDashboard, badge: null, active: true },
-    { label: "Projects", icon: FolderKanban, badge: "12" },
-    { label: "Characters", icon: Users, badge: null },
-  ]},
-  { group: "Generation", items: [
-    { label: "Images", icon: ImageIcon, badge: null },
-    { label: "Videos", icon: Film, badge: "3" },
-    { label: "Voices", icon: Mic2, badge: null },
-    { label: "LoRA Training", icon: Wand2, badge: "2" },
-  ]},
-  { group: "Automation", items: [
-    { label: "Workflows", icon: Workflow, badge: null },
-    { label: "Templates", icon: LayoutTemplate, badge: null },
-    { label: "Agent Studio", icon: Bot, badge: "NEW" },
-  ]},
-  { group: "Infrastructure", items: [
-    { label: "Render Farm", icon: Server, badge: null },
-    { label: "Storage", icon: HardDrive, badge: null },
-    { label: "Billing", icon: CreditCard, badge: null },
-    { label: "Settings", icon: Settings, badge: null },
-  ]},
+type NavItem = {
+  label: string;
+  to: string;
+  icon: React.ComponentType<{ className?: string }>;
+  badge?: string | null;
+  exact?: boolean;
+};
+
+const NAV: { group: string; items: NavItem[] }[] = [
+  {
+    group: "Workspace",
+    items: [
+      { label: "Dashboard", to: "/", icon: LayoutDashboard, exact: true },
+      { label: "Projects", to: "/projects", icon: FolderKanban, badge: "6" },
+      { label: "Characters", to: "/characters", icon: Users },
+      { label: "Assets", to: "/assets", icon: Library },
+    ],
+  },
+  {
+    group: "Automation",
+    items: [
+      { label: "Agent Studio", to: "/agents", icon: Bot, badge: "NEW" },
+    ],
+  },
+  {
+    group: "Infrastructure",
+    items: [
+      { label: "Render Farm", to: "/factory", icon: Server },
+      { label: "Analytics", to: "/analytics", icon: BarChart3 },
+      { label: "Settings", to: "/settings", icon: Settings },
+    ],
+  },
 ];
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isActive = (to: string, exact?: boolean) =>
+    exact ? pathname === to : pathname === to || pathname.startsWith(to + "/");
   return (
     <aside
       className={cn(
@@ -82,17 +89,19 @@ export function Sidebar() {
             <div className="space-y-0.5">
               {group.items.map((item) => {
                 const Icon = item.icon;
+                const active = isActive(item.to, item.exact);
                 return (
-                  <button
+                  <Link
                     key={item.label}
+                    to={item.to}
                     className={cn(
                       "group relative flex w-full items-center gap-3 rounded-lg px-2.5 py-2 text-sm font-medium transition",
-                      item.active
+                      active
                         ? "bg-sidebar-accent text-foreground"
                         : "text-muted-foreground hover:bg-sidebar-accent/60 hover:text-foreground",
                     )}
                   >
-                    {item.active && (
+                    {active && (
                       <span className="absolute left-0 top-1/2 h-5 w-0.5 -translate-y-1/2 rounded-r-full bg-aurora" />
                     )}
                     <Icon className="h-[18px] w-[18px] shrink-0" />
@@ -109,7 +118,7 @@ export function Sidebar() {
                         {item.badge}
                       </span>
                     )}
-                  </button>
+                  </Link>
                 );
               })}
             </div>
