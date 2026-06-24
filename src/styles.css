@@ -197,20 +197,19 @@
   text-shadow: 0 0 6px oklch(0.86 0.22 145 / 0.6), 0 0 14px oklch(0.86 0.22 145 / 0.25);
   overflow: hidden;
   animation: flicker 6s infinite;
-}
-
-@utility crt::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 2px,
-    oklch(0 0 0 / 0.25) 3px,
-    transparent 4px
-  );
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 2px,
+      oklch(0 0 0 / 0.25) 3px,
+      transparent 4px
+    );
+  }
 }
 
 @utility crt-scan {
