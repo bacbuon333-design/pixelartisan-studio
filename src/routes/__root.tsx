@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AI Character Factory — Multi-Gemini Super Gateway Hub" },
-      { name: "description", content: "Distributed GPU orchestration across Colab, Local & RunPod with self-healing Actor-Critic agent loops." },
-      { name: "author", content: "AI Character Factory" },
-      { property: "og:title", content: "AI Character Factory" },
-      { property: "og:description", content: "Distributed GPU orchestration across Colab, Local & RunPod with self-healing Actor-Critic agent loops." },
+      { title: "AI Video Factory — Generate at the speed of thought" },
+      { name: "description", content: "Enterprise AI video, image, and avatar generation orchestrated across Google Colab GPU workers." },
+      { name: "author", content: "AI Video Factory" },
+      { property: "og:title", content: "AI Video Factory — Generate at the speed of thought" },
+      { property: "og:description", content: "Enterprise AI video, image, and avatar generation orchestrated across Google Colab GPU workers." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "AI Video Factory — Generate at the speed of thought" },
+      { name: "twitter:description", content: "Enterprise AI video, image, and avatar generation orchestrated across Google Colab GPU workers." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c9cff82c-c7ea-45d6-943c-4768c02edd5d/id-preview-d690db9d--4a04d5bc-b832-40b1-a7fe-f696da4e45eb.lovable.app-1782290905433.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c9cff82c-c7ea-45d6-943c-4768c02edd5d/id-preview-d690db9d--4a04d5bc-b832-40b1-a7fe-f696da4e45eb.lovable.app-1782290905433.png" },
     ],
     links: [
       {
