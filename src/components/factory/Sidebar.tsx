@@ -1,14 +1,17 @@
 import { useState } from "react";
 import {
   LayoutDashboard,
-  FolderKanban,
+  Network,
+  GitBranch,
+  Container as ContainerIcon,
+  TerminalSquare,
   Users,
   Library,
   Bot,
   Server,
   BarChart3,
   Settings,
-  Sparkles,
+  Cpu,
   ChevronsLeft,
 } from "lucide-react";
 import { Link, useRouterState } from "@tanstack/react-router";
@@ -24,17 +27,20 @@ type NavItem = {
 
 const NAV: { group: string; items: NavItem[] }[] = [
   {
-    group: "Workspace",
+    group: "Mission Control",
     items: [
       { label: "Dashboard", to: "/", icon: LayoutDashboard, exact: true },
-      { label: "Projects", to: "/projects", icon: FolderKanban, badge: "6" },
-      { label: "Characters", to: "/characters", icon: Users },
-      { label: "Assets", to: "/assets", icon: Library },
+      { label: "Connection Hub", to: "/hub", icon: Network, badge: "6/8" },
+      { label: "LangGraph Flow", to: "/flow", icon: GitBranch, badge: "LIVE" },
+      { label: "Docker Sandbox", to: "/sandbox", icon: ContainerIcon },
+      { label: "CRT Console", to: "/console", icon: TerminalSquare },
     ],
   },
   {
-    group: "Automation",
+    group: "Studio",
     items: [
+      { label: "Characters", to: "/characters", icon: Users },
+      { label: "Assets", to: "/assets", icon: Library },
       { label: "Agent Studio", to: "/agents", icon: Bot, badge: "NEW" },
     ],
   },
@@ -61,13 +67,14 @@ export function Sidebar() {
       )}
     >
       <div className="flex h-16 items-center gap-2.5 border-b border-sidebar-border px-4">
-        <div className="grid h-9 w-9 place-items-center rounded-lg bg-aurora ring-glow">
-          <Sparkles className="h-4 w-4 text-background" strokeWidth={2.5} />
+        <div className="relative grid h-9 w-9 place-items-center rounded-lg bg-aurora ring-glow">
+          <Cpu className="h-4 w-4 text-background" strokeWidth={2.5} />
+          <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-phosphor ring-2 ring-sidebar shadow-[0_0_8px_oklch(0.86_0.22_145)]" />
         </div>
         {!collapsed && (
           <div className="flex-1">
-            <div className="text-sm font-semibold tracking-tight">AI Video Factory</div>
-            <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Production · v2.6</div>
+            <div className="text-sm font-semibold tracking-tight">AI Character Factory</div>
+            <div className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Super Gateway · v3.0</div>
           </div>
         )}
         <button
