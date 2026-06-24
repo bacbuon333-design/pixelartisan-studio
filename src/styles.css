@@ -51,6 +51,8 @@
   --color-warning: var(--warning);
   --color-violet: var(--violet);
   --color-cyan: var(--cyan);
+  --color-phosphor: var(--phosphor);
+  --color-amber-crt: var(--amber-crt);
 }
 
 :root {
@@ -75,6 +77,8 @@
   --warning: oklch(0.8 0.17 75);
   --violet: oklch(0.68 0.22 295);
   --cyan: oklch(0.78 0.15 200);
+  --phosphor: oklch(0.86 0.22 145);
+  --amber-crt: oklch(0.82 0.17 75);
   --border: oklch(1 0 0 / 8%);
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.72 0.18 295);
@@ -160,4 +164,73 @@
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  3% { opacity: 0.85; }
+  6% { opacity: 1; }
+  47% { opacity: 1; }
+  49% { opacity: 0.92; }
+  51% { opacity: 1; }
+}
+
+@keyframes dash-flow {
+  to { stroke-dashoffset: -24; }
+}
+
+@keyframes grid-pan {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+@utility crt {
+  position: relative;
+  background: radial-gradient(ellipse at center, oklch(0.16 0.04 150 / 0.95), oklch(0.06 0.02 150));
+  color: var(--phosphor);
+  font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  text-shadow: 0 0 6px oklch(0.86 0.22 145 / 0.6), 0 0 14px oklch(0.86 0.22 145 / 0.25);
+  overflow: hidden;
+  animation: flicker 6s infinite;
+}
+
+@utility crt::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    oklch(0 0 0 / 0.25) 3px,
+    transparent 4px
+  );
+}
+
+@utility crt-scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, oklch(0.86 0.22 145 / 0.08), transparent);
+  height: 30%;
+  animation: scanline 4s linear infinite;
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+@utility neon-edge {
+  box-shadow:
+    inset 0 0 0 1px oklch(0.86 0.22 145 / 0.4),
+    0 0 24px -4px oklch(0.86 0.22 145 / 0.35);
 }
