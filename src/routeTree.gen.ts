@@ -10,8 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SandboxRouteImport } from './routes/sandbox'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as HubRouteImport } from './routes/hub'
+import { Route as FlowRouteImport } from './routes/flow'
 import { Route as FactoryRouteImport } from './routes/factory'
+import { Route as ConsoleRouteImport } from './routes/console'
 import { Route as CharactersRouteImport } from './routes/characters'
 import { Route as AssetsRouteImport } from './routes/assets'
 import { Route as AnalyticsRouteImport } from './routes/analytics'
@@ -24,14 +28,34 @@ const SettingsRoute = SettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SandboxRoute = SandboxRouteImport.update({
+  id: '/sandbox',
+  path: '/sandbox',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HubRoute = HubRouteImport.update({
+  id: '/hub',
+  path: '/hub',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlowRoute = FlowRouteImport.update({
+  id: '/flow',
+  path: '/flow',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FactoryRoute = FactoryRouteImport.update({
   id: '/factory',
   path: '/factory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsoleRoute = ConsoleRouteImport.update({
+  id: '/console',
+  path: '/console',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CharactersRoute = CharactersRouteImport.update({
@@ -71,8 +95,12 @@ export interface FileRoutesByFullPath {
   '/analytics': typeof AnalyticsRoute
   '/assets': typeof AssetsRoute
   '/characters': typeof CharactersRoute
+  '/console': typeof ConsoleRoute
   '/factory': typeof FactoryRoute
+  '/flow': typeof FlowRoute
+  '/hub': typeof HubRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/sandbox': typeof SandboxRoute
   '/settings': typeof SettingsRoute
   '/projects/$id': typeof ProjectsIdRoute
 }
@@ -82,8 +110,12 @@ export interface FileRoutesByTo {
   '/analytics': typeof AnalyticsRoute
   '/assets': typeof AssetsRoute
   '/characters': typeof CharactersRoute
+  '/console': typeof ConsoleRoute
   '/factory': typeof FactoryRoute
+  '/flow': typeof FlowRoute
+  '/hub': typeof HubRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/sandbox': typeof SandboxRoute
   '/settings': typeof SettingsRoute
   '/projects/$id': typeof ProjectsIdRoute
 }
@@ -94,8 +126,12 @@ export interface FileRoutesById {
   '/analytics': typeof AnalyticsRoute
   '/assets': typeof AssetsRoute
   '/characters': typeof CharactersRoute
+  '/console': typeof ConsoleRoute
   '/factory': typeof FactoryRoute
+  '/flow': typeof FlowRoute
+  '/hub': typeof HubRoute
   '/projects': typeof ProjectsRouteWithChildren
+  '/sandbox': typeof SandboxRoute
   '/settings': typeof SettingsRoute
   '/projects/$id': typeof ProjectsIdRoute
 }
@@ -107,8 +143,12 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/assets'
     | '/characters'
+    | '/console'
     | '/factory'
+    | '/flow'
+    | '/hub'
     | '/projects'
+    | '/sandbox'
     | '/settings'
     | '/projects/$id'
   fileRoutesByTo: FileRoutesByTo
@@ -118,8 +158,12 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/assets'
     | '/characters'
+    | '/console'
     | '/factory'
+    | '/flow'
+    | '/hub'
     | '/projects'
+    | '/sandbox'
     | '/settings'
     | '/projects/$id'
   id:
@@ -129,8 +173,12 @@ export interface FileRouteTypes {
     | '/analytics'
     | '/assets'
     | '/characters'
+    | '/console'
     | '/factory'
+    | '/flow'
+    | '/hub'
     | '/projects'
+    | '/sandbox'
     | '/settings'
     | '/projects/$id'
   fileRoutesById: FileRoutesById
@@ -141,8 +189,12 @@ export interface RootRouteChildren {
   AnalyticsRoute: typeof AnalyticsRoute
   AssetsRoute: typeof AssetsRoute
   CharactersRoute: typeof CharactersRoute
+  ConsoleRoute: typeof ConsoleRoute
   FactoryRoute: typeof FactoryRoute
+  FlowRoute: typeof FlowRoute
+  HubRoute: typeof HubRoute
   ProjectsRoute: typeof ProjectsRouteWithChildren
+  SandboxRoute: typeof SandboxRoute
   SettingsRoute: typeof SettingsRoute
 }
 
@@ -155,6 +207,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sandbox': {
+      id: '/sandbox'
+      path: '/sandbox'
+      fullPath: '/sandbox'
+      preLoaderRoute: typeof SandboxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects': {
       id: '/projects'
       path: '/projects'
@@ -162,11 +221,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/hub': {
+      id: '/hub'
+      path: '/hub'
+      fullPath: '/hub'
+      preLoaderRoute: typeof HubRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flow': {
+      id: '/flow'
+      path: '/flow'
+      fullPath: '/flow'
+      preLoaderRoute: typeof FlowRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/factory': {
       id: '/factory'
       path: '/factory'
       fullPath: '/factory'
       preLoaderRoute: typeof FactoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/console': {
+      id: '/console'
+      path: '/console'
+      fullPath: '/console'
+      preLoaderRoute: typeof ConsoleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/characters': {
@@ -232,8 +312,12 @@ const rootRouteChildren: RootRouteChildren = {
   AnalyticsRoute: AnalyticsRoute,
   AssetsRoute: AssetsRoute,
   CharactersRoute: CharactersRoute,
+  ConsoleRoute: ConsoleRoute,
   FactoryRoute: FactoryRoute,
+  FlowRoute: FlowRoute,
+  HubRoute: HubRoute,
   ProjectsRoute: ProjectsRouteWithChildren,
+  SandboxRoute: SandboxRoute,
   SettingsRoute: SettingsRoute,
 }
 export const routeTree = rootRouteImport
